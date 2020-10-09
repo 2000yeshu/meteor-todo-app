@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { Task } from "./Task.jsx";
 import { useTracker } from "meteor/react-meteor-data";
-import { TasksCollection } from "../api/TasksCollection";
+import { TasksCollection } from "../db/TasksCollection";
 import { TaskForm } from "./TaskForm";
 import { LoginForm } from "./LoginForm";
 
 const toogleClicked = ({ _id, isChecked }) => {
   //console.log(_id, isChecked);
-  TasksCollection.update(_id, {
-    $set: {
-      isChecked: !isChecked,
-    },
-  });
+  Meteor.call("tasks.update", _id, !isChecked);
+  // TasksCollection.update(_id, {
+  //   $set: {
+  //     isChecked: !isChecked,
+  //   },
+  // });
 };
 const onDeleteClick = ({ _id }) => {
-  TasksCollection.remove(_id);
+  Meteor.call("tasks.remove", _id);
+  // TasksCollection.remove(_id);
 };
 
 export const App = () => {

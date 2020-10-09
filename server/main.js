@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor";
 import { Accounts } from "meteor/accounts-base";
-import { TasksCollection } from "/imports/api/TasksCollection";
+import { TasksCollection } from "/imports/db/TasksCollection";
+import { taskMethods } from "/imports/api/taskMethods";
 
 const def_user = "ROOT";
 const def_pass = "password";
